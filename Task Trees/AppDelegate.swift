@@ -7,33 +7,41 @@
 
 import Cocoa
 import SwiftUI
+import Combine
+
+var mainWindow: NSWindow!
+func toView<T: View>(view: T) {
+    mainWindow.contentView = NSHostingView(rootView: view.frame(maxWidth: .infinity, maxHeight: .infinity))
+}
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var window: NSWindow!
 
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
-
-        // Create the window and set the content view.
+        
+        // establish DateCalculator
+        dateCalculator = DateCalculator()
+        
+        // create View
+        let view = MainView(adHocStore: adHocStore)
+        
+        // create Window
         window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
+            contentRect: NSScreen.main!.visibleFrame,
             styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
             backing: .buffered, defer: false)
         window.isReleasedWhenClosed = false
         window.center()
         window.setFrameAutosaveName("Main Window")
-        window.contentView = NSHostingView(rootView: contentView)
+        mainWindow = window
+        toView(view: view)
         window.makeKeyAndOrderFront(nil)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+        print("TERMINATING")
     }
-
-
 }
 

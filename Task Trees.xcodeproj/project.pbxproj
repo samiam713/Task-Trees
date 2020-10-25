@@ -7,22 +7,58 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D307949C2544C9CE00CF474A /* RecurringTaskPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D307949B2544C9CE00CF474A /* RecurringTaskPlan.swift */; };
+		D307949F2544C9D800CF474A /* RecurringTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D307949E2544C9D800CF474A /* RecurringTaskManager.swift */; };
+		D30794A22544CA6C00CF474A /* RecurringToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30794A12544CA6C00CF474A /* RecurringToolbar.swift */; };
+		D30794A72544D3E900CF474A /* IDBoolToggler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30794A62544D3E900CF474A /* IDBoolToggler.swift */; };
+		D30794AA2544D62B00CF474A /* IDBool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30794A92544D62B00CF474A /* IDBool.swift */; };
+		D351BDFC253AA7C400322BC0 /* FractalTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351BDFB253AA7C400322BC0 /* FractalTreeView.swift */; };
+		D351BDFF253AAA1C00322BC0 /* DateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351BDFE253AAA1C00322BC0 /* DateCalculator.swift */; };
+		D351BE04253B4AB200322BC0 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351BE03253B4AB200322BC0 /* BlurView.swift */; };
+		D351BE0A253B4D8400322BC0 /* AdHocToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351BE09253B4D8400322BC0 /* AdHocToolbar.swift */; };
+		D351BE10253B81E800322BC0 /* AHTNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351BE0F253B81E800322BC0 /* AHTNote.swift */; };
+		D36E011A25394B210087E2E1 /* AdHocStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E011925394B210087E2E1 /* AdHocStore.swift */; };
+		D36E011E253A0A800087E2E1 /* AdHocManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E011D253A0A800087E2E1 /* AdHocManagerView.swift */; };
+		D36E0124253A12810087E2E1 /* AdHocTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E0123253A12810087E2E1 /* AdHocTaskView.swift */; };
+		D36E012A253A217E0087E2E1 /* AdHocEditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36E0129253A217E0087E2E1 /* AdHocEditTaskView.swift */; };
 		D39F9A122538AB0C006784C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F9A112538AB0C006784C5 /* AppDelegate.swift */; };
-		D39F9A142538AB0C006784C5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F9A132538AB0C006784C5 /* ContentView.swift */; };
+		D39F9A142538AB0C006784C5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F9A132538AB0C006784C5 /* MainView.swift */; };
 		D39F9A162538AB0C006784C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D39F9A152538AB0C006784C5 /* Assets.xcassets */; };
 		D39F9A192538AB0C006784C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D39F9A182538AB0C006784C5 /* Preview Assets.xcassets */; };
 		D39F9A1C2538AB0C006784C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D39F9A1A2538AB0C006784C5 /* Main.storyboard */; };
+		D39F9A262538AE12006784C5 /* AdHocTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39F9A252538AE12006784C5 /* AdHocTask.swift */; };
+		D3A1D7512538AF16003FD359 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A1D7502538AF16003FD359 /* Utilities.swift */; };
+		D3A1D7542538B455003FD359 /* AdHocManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A1D7532538B455003FD359 /* AdHocManager.swift */; };
+		D3A1D7582538B926003FD359 /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A1D7572538B926003FD359 /* FileSystem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D307949B2544C9CE00CF474A /* RecurringTaskPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecurringTaskPlan.swift; sourceTree = "<group>"; };
+		D307949E2544C9D800CF474A /* RecurringTaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecurringTaskManager.swift; sourceTree = "<group>"; };
+		D30794A12544CA6C00CF474A /* RecurringToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecurringToolbar.swift; sourceTree = "<group>"; };
+		D30794A62544D3E900CF474A /* IDBoolToggler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDBoolToggler.swift; sourceTree = "<group>"; };
+		D30794A92544D62B00CF474A /* IDBool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDBool.swift; sourceTree = "<group>"; };
+		D351BDFB253AA7C400322BC0 /* FractalTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FractalTreeView.swift; sourceTree = "<group>"; };
+		D351BDFE253AAA1C00322BC0 /* DateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCalculator.swift; sourceTree = "<group>"; };
+		D351BE03253B4AB200322BC0 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		D351BE09253B4D8400322BC0 /* AdHocToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocToolbar.swift; sourceTree = "<group>"; };
+		D351BE0F253B81E800322BC0 /* AHTNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AHTNote.swift; sourceTree = "<group>"; };
+		D36E011925394B210087E2E1 /* AdHocStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocStore.swift; sourceTree = "<group>"; };
+		D36E011D253A0A800087E2E1 /* AdHocManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocManagerView.swift; sourceTree = "<group>"; };
+		D36E0123253A12810087E2E1 /* AdHocTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocTaskView.swift; sourceTree = "<group>"; };
+		D36E0129253A217E0087E2E1 /* AdHocEditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocEditTaskView.swift; sourceTree = "<group>"; };
 		D39F9A0E2538AB0C006784C5 /* Task Trees.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task Trees.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D39F9A112538AB0C006784C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D39F9A132538AB0C006784C5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D39F9A132538AB0C006784C5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D39F9A152538AB0C006784C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D39F9A182538AB0C006784C5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D39F9A1B2538AB0C006784C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D39F9A1D2538AB0C006784C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D39F9A1E2538AB0C006784C5 /* Task_Trees.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Task_Trees.entitlements; sourceTree = "<group>"; };
+		D39F9A252538AE12006784C5 /* AdHocTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocTask.swift; sourceTree = "<group>"; };
+		D3A1D7502538AF16003FD359 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		D3A1D7532538B455003FD359 /* AdHocManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocManager.swift; sourceTree = "<group>"; };
+		D3A1D7572538B926003FD359 /* FileSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +72,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D30794952544C98600CF474A /* Recurring */ = {
+			isa = PBXGroup;
+			children = (
+				D307949E2544C9D800CF474A /* RecurringTaskManager.swift */,
+				D307949B2544C9CE00CF474A /* RecurringTaskPlan.swift */,
+				D30794A92544D62B00CF474A /* IDBool.swift */,
+			);
+			path = Recurring;
+			sourceTree = "<group>";
+		};
+		D30794962544C9A300CF474A /* RecurringViews */ = {
+			isa = PBXGroup;
+			children = (
+				D30794A12544CA6C00CF474A /* RecurringToolbar.swift */,
+				D30794A62544D3E900CF474A /* IDBoolToggler.swift */,
+			);
+			path = RecurringViews;
+			sourceTree = "<group>";
+		};
+		D351BE02253B4A9800322BC0 /* UtilityViews */ = {
+			isa = PBXGroup;
+			children = (
+				D351BE03253B4AB200322BC0 /* BlurView.swift */,
+			);
+			path = UtilityViews;
+			sourceTree = "<group>";
+		};
+		D36E011C253A0A570087E2E1 /* AdHocViews */ = {
+			isa = PBXGroup;
+			children = (
+				D351BE09253B4D8400322BC0 /* AdHocToolbar.swift */,
+				D36E011D253A0A800087E2E1 /* AdHocManagerView.swift */,
+				D36E0123253A12810087E2E1 /* AdHocTaskView.swift */,
+				D36E0129253A217E0087E2E1 /* AdHocEditTaskView.swift */,
+			);
+			path = AdHocViews;
+			sourceTree = "<group>";
+		};
+		D36E012D253A24100087E2E1 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				D39F9A132538AB0C006784C5 /* MainView.swift */,
+				D351BDFB253AA7C400322BC0 /* FractalTreeView.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
 		D39F9A052538AB0B006784C5 = {
 			isa = PBXGroup;
 			children = (
@@ -56,7 +139,15 @@
 			isa = PBXGroup;
 			children = (
 				D39F9A112538AB0C006784C5 /* AppDelegate.swift */,
-				D39F9A132538AB0C006784C5 /* ContentView.swift */,
+				D3A1D7572538B926003FD359 /* FileSystem.swift */,
+				D351BDFE253AAA1C00322BC0 /* DateCalculator.swift */,
+				D3A1D7502538AF16003FD359 /* Utilities.swift */,
+				D351BE02253B4A9800322BC0 /* UtilityViews */,
+				D36E012D253A24100087E2E1 /* MainView */,
+				D36E011C253A0A570087E2E1 /* AdHocViews */,
+				D3A1D75A2538B965003FD359 /* AdHoc */,
+				D30794962544C9A300CF474A /* RecurringViews */,
+				D30794952544C98600CF474A /* Recurring */,
 				D39F9A152538AB0C006784C5 /* Assets.xcassets */,
 				D39F9A1A2538AB0C006784C5 /* Main.storyboard */,
 				D39F9A1D2538AB0C006784C5 /* Info.plist */,
@@ -72,6 +163,17 @@
 				D39F9A182538AB0C006784C5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D3A1D75A2538B965003FD359 /* AdHoc */ = {
+			isa = PBXGroup;
+			children = (
+				D36E011925394B210087E2E1 /* AdHocStore.swift */,
+				D3A1D7532538B455003FD359 /* AdHocManager.swift */,
+				D39F9A252538AE12006784C5 /* AdHocTask.swift */,
+				D351BE0F253B81E800322BC0 /* AHTNote.swift */,
+			);
+			path = AdHoc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,8 +246,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D39F9A142538AB0C006784C5 /* ContentView.swift in Sources */,
+				D36E011A25394B210087E2E1 /* AdHocStore.swift in Sources */,
+				D307949F2544C9D800CF474A /* RecurringTaskManager.swift in Sources */,
+				D351BE04253B4AB200322BC0 /* BlurView.swift in Sources */,
+				D39F9A142538AB0C006784C5 /* MainView.swift in Sources */,
+				D3A1D7542538B455003FD359 /* AdHocManager.swift in Sources */,
 				D39F9A122538AB0C006784C5 /* AppDelegate.swift in Sources */,
+				D3A1D7512538AF16003FD359 /* Utilities.swift in Sources */,
+				D36E012A253A217E0087E2E1 /* AdHocEditTaskView.swift in Sources */,
+				D30794A22544CA6C00CF474A /* RecurringToolbar.swift in Sources */,
+				D351BDFC253AA7C400322BC0 /* FractalTreeView.swift in Sources */,
+				D3A1D7582538B926003FD359 /* FileSystem.swift in Sources */,
+				D36E0124253A12810087E2E1 /* AdHocTaskView.swift in Sources */,
+				D351BE10253B81E800322BC0 /* AHTNote.swift in Sources */,
+				D39F9A262538AE12006784C5 /* AdHocTask.swift in Sources */,
+				D36E011E253A0A800087E2E1 /* AdHocManagerView.swift in Sources */,
+				D307949C2544C9CE00CF474A /* RecurringTaskPlan.swift in Sources */,
+				D30794AA2544D62B00CF474A /* IDBool.swift in Sources */,
+				D351BDFF253AAA1C00322BC0 /* DateCalculator.swift in Sources */,
+				D30794A72544D3E900CF474A /* IDBoolToggler.swift in Sources */,
+				D351BE0A253B4D8400322BC0 /* AdHocToolbar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
