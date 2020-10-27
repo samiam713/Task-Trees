@@ -48,7 +48,7 @@ class AdHocStore: Codable, ObservableObject {
     
     func refreshLeavesDue(daysFromNow: Int) {
         print("Calling on \(daysFromNow)")
-        guard (0..<8).contains(daysFromNow) else {return}
+        guard (0...7).contains(daysFromNow) else {return}
         
         var gatherer = [AdHocTask]()
         
@@ -82,11 +82,27 @@ class AdHocStore: Codable, ObservableObject {
         }
     }
     
+    enum Key: String, CodingKey {
+        case store
+    }
+    
     required init(from decoder: Decoder) throws {
-        fatalError()
+        let container = try decoder.container(keyedBy: Key.self)
+        store = try container.decode([AdHocManager].self, forKey: .store)
+        currentlyExamining = nil
+        
+        dayLeaves = []
+        dayLeaves.reserveCapacity(8)
+        
+        for i in 0...7 {
+            dayLeaves.append(.init())
+            refreshLeavesDue(daysFromNow: i)
+        }
     }
     
     func encode(to encoder: Encoder) throws {
-        fatalError()
+        var container = encoder.container(keyedBy: Key.self)
+        
+        try container.encode(store, forKey: .store)
     }
 }

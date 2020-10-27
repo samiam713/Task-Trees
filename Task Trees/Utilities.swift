@@ -48,3 +48,7 @@ extension Path {
         closeSubpath()
     }
 }
+
+extension Color {
+    static let brown = Self.init(red: 139.0/255.0, green: 69.0/255.0, blue: 19.0/255.0)
+}

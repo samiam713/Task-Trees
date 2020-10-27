@@ -15,19 +15,21 @@ class RecurringTask: ObservableObject, Identifiable, Equatable, Codable {
     
     var id: UUID
     
-    @Published var days: [IDBool]
+    var name: String = "New Recurring Task"
+    
+    @Published var days  = [IDBool]()
     let maxCycleSize = 7
     
     init() {
         id = UUID()
         
-        days = [.init(),.init()]
+        days = [.init(task: self, day: 0),.init(task: self, day: 1)]
     }
     
     func canIncreaseCycleSize() -> Bool {days.count < maxCycleSize}
     func increaseCycleSize() {
         guard canIncreaseCycleSize() else {fatalError()}
-        days.append(.init())
+        days.append(.init(task: self, day: days.count))
     }
     
     func canDecreaseCycleSize() -> Bool {days.count > 1}
@@ -49,11 +51,22 @@ class RecurringTask: ObservableObject, Identifiable, Equatable, Codable {
         }
     }
     
+    enum Key: String, CodingKey {
+        case id, name, days
+    }
+    
     required init(from decoder: Decoder) throws {
-        fatalError()
+        let container = try decoder.container(keyedBy: Key.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        days = try container.decode([IDBool].self, forKey: .days)
+        days.forEach({$0.task = self})
     }
     
     func encode(to encoder: Encoder) throws {
-        fatalError()
+        var container = encoder.container(keyedBy: Key.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(name, forKey: .name)
+        try container.encode(days, forKey: .days)
     }
 }

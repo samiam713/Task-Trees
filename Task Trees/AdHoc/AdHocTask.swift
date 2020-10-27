@@ -20,7 +20,7 @@ class AdHocTask: Identifiable, Equatable, ObservableObject, Codable {
     @Published var completeBy = dateCalculator.today + 1
     // use Stepper to manipulate above
     
-    unowned var manager: AdHocManager
+    unowned var manager: AdHocManager!
     // DO NOT ENCODE THE MANAGER
     
     unowned var parent: AdHocTask?
@@ -33,6 +33,8 @@ class AdHocTask: Identifiable, Equatable, ObservableObject, Codable {
     
     var depth: Double
     var breadth: Double
+    
+    @Published var notes: [Note]
     
     init(parent: AdHocTask?, manager: AdHocManager) {
         id = UUID()
@@ -81,8 +83,6 @@ class AdHocTask: Identifiable, Equatable, ObservableObject, Codable {
         }
     }
     
-    @Published var notes: [Note]
-    
     func addNote() {
         notes.append(Note())
     }
@@ -93,15 +93,41 @@ class AdHocTask: Identifiable, Equatable, ObservableObject, Codable {
     
     func getColor() -> Color {isLeaf() ? .green : .brown}
     
+    func recursivelySetManager(manager: AdHocManager) {
+        self.manager = manager
+        for child in children {child.recursivelySetManager(manager: manager)}
+    }
+    
+    enum Key: String, CodingKey {
+        case id, name, usingCompleteBy, completeBy, children, depth, breadth, notes
+    }
+    
     required init(from decoder: Decoder) throws {
-        fatalError()
+        let container = try decoder.container(keyedBy: Key.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        usingCompleteBy = try container.decode(Bool.self, forKey: .usingCompleteBy)
+        completeBy = try container.decode(Int.self, forKey: .completeBy)
+        manager = nil
+        parent = nil
+        children = try container.decode([AdHocTask].self, forKey: .children)
+        depth = try container.decode(Double.self, forKey: .depth)
+        breadth = try container.decode(Double.self, forKey: .breadth)
+        notes = try container.decode([Note].self, forKey: .notes)
+        
+        for child in children {child.parent = self}
     }
     
     func encode(to encoder: Encoder) throws {
-        fatalError()
+        var container = encoder.container(keyedBy: Key.self)
+        
+        try container.encode(id, forKey: .id)
+        try container.encode(name, forKey: .name)
+        try container.encode(usingCompleteBy, forKey: .usingCompleteBy)
+        try container.encode(completeBy, forKey: .completeBy)
+        try container.encode(children, forKey: .children)
+        try container.encode(depth, forKey: .depth)
+        try container.encode(breadth, forKey: .breadth)
+        try container.encode(notes, forKey: .notes)
     }
-}
-
-extension Color {
-    static let brown = Self.init(red: 139.0/255.0, green: 69.0/255.0, blue: 19.0/255.0)
 }

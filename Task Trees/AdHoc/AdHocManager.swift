@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class AdHocManager: Identifiable, ObservableObject, Hashable {
+class AdHocManager: Identifiable, ObservableObject, Hashable, Codable {
     static func == (lhs: AdHocManager, rhs: AdHocManager) -> Bool {lhs.id == rhs.id}
     func hash(into hasher: inout Hasher) {hasher.combine(id)}
     
@@ -31,7 +31,7 @@ class AdHocManager: Identifiable, ObservableObject, Hashable {
     var leafNodes = [AdHocTask]()
     // DO NOT ENCODE THESE BECAUSE THEY WILL BE DIFFERENT INSTANCES THAN THEY SHOULD BE
     
-    var root: AdHocTask! = nil
+    var root: AdHocTask!
     
     init() {
         id = UUID()
@@ -50,7 +50,6 @@ class AdHocManager: Identifiable, ObservableObject, Hashable {
     func getChildren() -> [AdHocTask] {
         var children = [AdHocTask]()
         root.collectChildren(into: &children)
-        print(children.count)
         return children
     }
     
@@ -60,12 +59,11 @@ class AdHocManager: Identifiable, ObservableObject, Hashable {
         
         setWidthStride(to: 1/widthBound)
         setDepthStride(to: 1/depthBound)
-        print(depthStride)
     }
     
     func addChild(to: AdHocTask) {
         defer {redraw()}
-        
+                
         if to.isLeaf() {
             leafNodes.unsafeRemove(element: to)
             if to.usingCompleteBy {adHocStore.refreshLeavesDue(daysFromNow: to.completeBy - dateCalculator.today)}
@@ -83,7 +81,6 @@ class AdHocManager: Identifiable, ObservableObject, Hashable {
         defer {redraw()}
         
         guard let parent = leaf.parent else {fatalError("Calling complete on the root")}
-        
         parent.children.unsafeRemove(element: leaf)
         if parent.isLeaf() {
             leafNodes.append(parent)
@@ -102,25 +99,54 @@ class AdHocManager: Identifiable, ObservableObject, Hashable {
         
         guard let parent = child.parent else {fatalError("Calling complete on the root")}
         
-        var leafNodes = [AdHocTask]()
-        child.collectLeafNodes(into: &leafNodes)
+        var leafNodes2 = [AdHocTask]()
+        child.collectLeafNodes(into: &leafNodes2)
         
-        for leafNode in leafNodes {
-            leafNodes.unsafeRemove(element: leafNode)
+        for leafNode in leafNodes2 {
+            leafNodes2.unsafeRemove(element: leafNode)
             if leafNode.usingCompleteBy {adHocStore.refreshLeavesDue(daysFromNow: leafNode.completeBy - dateCalculator.today)}
         }
         
+        parent.children.unsafeRemove(element: child)
         if parent.isLeaf() {
             leafNodes.append(parent)
             if parent.usingCompleteBy {adHocStore.refreshLeavesDue(daysFromNow: parent.completeBy - dateCalculator.today)}
         }
         
-        parent.children.unsafeRemove(element: child)
     }
     
     func redraw() {
         calculateDrawData()
         objectWillChange.send()
+    }
+    
+    enum Key: String, CodingKey {
+        case id, depthStride, depthPadding, widthStride, widthPadding, root
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Key.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        depthStride = try container.decode(Double.self, forKey: .depthStride)
+        depthPadding = try container.decode(Double.self, forKey: .depthPadding)
+        widthStride = try container.decode(Double.self, forKey: .widthStride)
+        widthPadding = try container.decode(Double.self, forKey: .widthPadding)
+        root = try container.decode(AdHocTask.self, forKey: .root)
+        
+        root.recursivelySetManager(manager: self)
+        root.collectLeafNodes(into: &leafNodes)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Key.self)
+        
+        try container.encode(id, forKey: .id)
+        try container.encode(depthStride, forKey: .depthStride)
+        try container.encode(depthPadding, forKey: .depthPadding)
+        try container.encode(widthStride, forKey: .widthStride)
+        try container.encode(widthPadding, forKey: .widthPadding)
+        
+        try container.encode(root, forKey: .root)
     }
 }
 

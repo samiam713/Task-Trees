@@ -42,6 +42,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ aNotification: Notification) {
         print("TERMINATING")
+        adHocStore.save()
+        recurringTaskManager.save()
     }
 }
 

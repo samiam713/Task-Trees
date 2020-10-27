@@ -11,7 +11,7 @@ struct AdHocEditTaskView: View {
     
     @ObservedObject var adHocTask: AdHocTask
     
-    @State var deletionAlert: AdHocTask? = nil
+    @State var deletionAlert = false
     
     let unpresentView: () -> ()
     
@@ -29,27 +29,29 @@ struct AdHocEditTaskView: View {
             Divider()
             Section {
                 if adHocTask.usingCompleteBy {
-                    HStack {
-                        Spacer()
-                        Button("Decrease due date") {
-                            adHocTask.completeBy -= 1
-                            if adHocTask.isLeaf() {
-                                adHocStore.refreshLeavesDue(daysFromNow: adHocTask.completeBy - dateCalculator.today)
-                                adHocStore.refreshLeavesDue(daysFromNow: adHocTask.completeBy - dateCalculator.today + 1)
+                    ZStack {
+                        HStack {
+                            Button("Decrease due date") {
+                                adHocTask.completeBy -= 1
+                                if adHocTask.isLeaf() {
+                                    adHocStore.refreshLeavesDue(daysFromNow: adHocTask.completeBy - dateCalculator.today)
+                                    adHocStore.refreshLeavesDue(daysFromNow: adHocTask.completeBy - dateCalculator.today + 1)
+                                }
                             }
-                        }
-                        Button("Increase due date") {
-                            adHocTask.completeBy += 1
-                            if adHocTask.isLeaf() {
-                                adHocStore.refreshLeavesDue(daysFromNow: adHocTask.completeBy - dateCalculator.today)
-                                adHocStore.refreshLeavesDue(daysFromNow: adHocTask.completeBy - dateCalculator.today - 1)
+                            Spacer()
+                            Button("Increase due date") {
+                                adHocTask.completeBy += 1
+                                if adHocTask.isLeaf() {
+                                    adHocStore.refreshLeavesDue(daysFromNow: adHocTask.completeBy - dateCalculator.today)
+                                    adHocStore.refreshLeavesDue(daysFromNow: adHocTask.completeBy - dateCalculator.today - 1)
+                                }
                             }
+                            
                         }
-                        Spacer()
+                        Text(dateCalculator.getPrettyString(fromDay: adHocTask.completeBy))
+                            .italic()
                     }
-                    Text(dateCalculator.getPrettyString(fromDay: adHocTask.completeBy))
-                        .italic()
-                        .centered()
+                    .padding()
                     Button("Stop using due date") {
                         adHocTask.usingCompleteBy = false
                         if adHocTask.isLeaf() {
@@ -92,21 +94,21 @@ struct AdHocEditTaskView: View {
                     .centered()
                 if !adHocTask.isRoot() {
                     Button("Delete") {
-                        deletionAlert = adHocTask
+                        deletionAlert = true
                     }
                     .padding(5.0)
                     .centered()
                     .foregroundColor(.red)
-                    .alert(item: $deletionAlert, content: {(task: AdHocTask) in
-                        Alert(title: Text("Delete Task"), message: Text("Do you want to delete task \"\(task.name)?\""), primaryButton: .destructive(Text("Confirm"), action: {
+                    .alert(isPresented: $deletionAlert, content: {
+                        Alert(title: Text("Delete Task"), message: Text("Do you want to delete task \"\(adHocTask.name)?\""), primaryButton: .destructive(Text("Confirm"), action: {
                             unpresentView()
-                            task.manager.delete(child: task)
+                            adHocTask.manager.delete(child: adHocTask)
                         }), secondaryButton: .cancel())
                     })
                 }
             }
         }
-        .frame(width: 600, height: 400, alignment: .center)
+        .frame(width: 700, height: 500, alignment: .center)
     }
 }
 

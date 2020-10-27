@@ -27,7 +27,7 @@ struct AdHocToolbar: View {
                 Text("Ad Hoc Tasks")
                     .font(.headline)
                 Spacer()
-                Button("New Root Task") {
+                Button("Add New") {
                     adHocStore.addNew()
                     presentingTask = adHocStore.store.last!.root
                 }
@@ -61,7 +61,8 @@ struct AdHocToolBarDayCompletionContainerView: View {
         VStack {
             Text(DateCalculator.getPrettyString(fromDayDelta: daysFromNow).capitalized(with: nil))
                 .font(.headline)
-                .padding(5)
+                .italic()
+                .padding(5.0)
             VStack {
                 ForEach(leafContainer.leavesDue) {(adHocTask: AdHocTask) in
                     VStack {

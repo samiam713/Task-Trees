@@ -33,13 +33,13 @@ class RecurringTaskManager: ObservableObject, Codable {
     func refreshIfNecessary() {
         if lastDayUpdated != dateCalculator.today {
             
-            let today = dateCalculator.today
+            lastDayUpdated = dateCalculator.today
             
             var newTodo = [RecurringTask]()
             var newInactive = [RecurringTask]()
             
             func classifyTask(recurringTask: RecurringTask) {
-                if recurringTask.appliesTo(day: today) {
+                if recurringTask.appliesTo(day: lastDayUpdated) {
                     newTodo.append(recurringTask)
                 } else {
                     newInactive.append(recurringTask)
@@ -68,13 +68,35 @@ class RecurringTaskManager: ObservableObject, Codable {
         todo.append(recurringTask)
     }
 
-    func delete(recurringTaskPlan: RecurringTask) {
-        if todo.contains(recurringTaskPlan) {
-            todo.unsafeRemove(element: recurringTaskPlan)
-        } else if done.contains(recurringTaskPlan) {
-            done.unsafeRemove(element: recurringTaskPlan)
-        } else if inactive.contains(recurringTaskPlan) {
-            inactive.unsafeRemove(element: recurringTaskPlan)
+    func delete(recurringTask: RecurringTask) {
+        if todo.contains(recurringTask) {
+            todo.unsafeRemove(element: recurringTask)
+        } else if done.contains(recurringTask) {
+            done.unsafeRemove(element: recurringTask)
+        } else if inactive.contains(recurringTask) {
+            inactive.unsafeRemove(element: recurringTask)
+        }
+    }
+    
+    func toggle(recurringTask: RecurringTask, onDay: Int) {
+        let wasActive = recurringTask.days[onDay].bool
+        defer {recurringTask.days[onDay].toggle()}
+        
+        if onDay == dateCalculator.today % recurringTask.days.count {
+            if wasActive {
+                if todo.contains(recurringTask) {
+                    todo.unsafeRemove(element: recurringTask)
+                    inactive.append(recurringTask)
+                } else if done.contains(recurringTask) {
+                    done.unsafeRemove(element: recurringTask)
+                    inactive.append(recurringTask)
+                } else {
+                    fatalError()
+                }
+            } else {
+                inactive.unsafeRemove(element: recurringTask)
+                todo.append(recurringTask)
+            }
         }
     }
 
@@ -84,11 +106,29 @@ class RecurringTaskManager: ObservableObject, Codable {
         currentlyEditing = newRecurringTask
     }
     
+    enum Key: String, CodingKey {
+        case todo, done, inactive, lastDayUpdated
+    }
+    
+    func save() {
+        fileSystem.save(this: self, to: recurringTaskManagerURL)
+    }
+    
+    
     required init(from decoder: Decoder) throws {
-        fatalError()
+        let container = try decoder.container(keyedBy: Key.self)
+        todo = try container.decode([RecurringTask].self, forKey: .todo)
+        done = try container.decode([RecurringTask].self, forKey: .done)
+        inactive = try container.decode([RecurringTask].self, forKey: .inactive)
+        lastDayUpdated = try container.decode(Int.self, forKey: .lastDayUpdated)
+        refreshIfNecessary()
     }
     
     func encode(to encoder: Encoder) throws {
-        fatalError()
+        var container = encoder.container(keyedBy: Key.self)
+        try container.encode(todo, forKey: .todo)
+        try container.encode(done, forKey: .done)
+        try container.encode(inactive, forKey: .inactive)
+        try container.encode(lastDayUpdated, forKey: .lastDayUpdated)
     }
 }

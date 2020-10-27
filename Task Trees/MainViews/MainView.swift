@@ -24,7 +24,7 @@ struct MainView: View {
                     .padding()
                     .frame(width: proxy.size.width*0.2, height: nil, alignment: .center)
                 ZStack {
-                    RoundedRectangle(cornerRadius: 20.0)
+                    Rectangle()
                         .foregroundColor(.black)
                     //                        .foregroundColor(.init(red: 135.0/255, green: 206.0/255, blue: 250.0/255))
                     if adHocStore.currentlyExamining == nil {
@@ -34,13 +34,7 @@ struct MainView: View {
                     }
                 }
                 .frame(width: proxy.size.width*0.6, height: nil, alignment: .center)
-                VStack {
-                    Text("Recurring Tasks")
-                        .font(.headline)
-                        .padding()
-                    RoundedRectangle(cornerRadius: 20.0)
-                        .foregroundColor(.white)
-                }
+                RecurringToolbar(recurringTaskManager: recurringTaskManager)
                 .padding()
                 .frame(width: proxy.size.width*0.2, height: nil, alignment: .center)
             }

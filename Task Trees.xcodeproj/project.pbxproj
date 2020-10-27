@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D307949C2544C9CE00CF474A /* RecurringTaskPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D307949B2544C9CE00CF474A /* RecurringTaskPlan.swift */; };
+		D307949C2544C9CE00CF474A /* RecurringTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D307949B2544C9CE00CF474A /* RecurringTask.swift */; };
 		D307949F2544C9D800CF474A /* RecurringTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D307949E2544C9D800CF474A /* RecurringTaskManager.swift */; };
 		D30794A22544CA6C00CF474A /* RecurringToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30794A12544CA6C00CF474A /* RecurringToolbar.swift */; };
 		D30794A72544D3E900CF474A /* IDBoolToggler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30794A62544D3E900CF474A /* IDBoolToggler.swift */; };
 		D30794AA2544D62B00CF474A /* IDBool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30794A92544D62B00CF474A /* IDBool.swift */; };
+		D30794B7254534E300CF474A /* RecurringEditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30794B6254534E300CF474A /* RecurringEditTaskView.swift */; };
 		D351BDFC253AA7C400322BC0 /* FractalTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351BDFB253AA7C400322BC0 /* FractalTreeView.swift */; };
 		D351BDFF253AAA1C00322BC0 /* DateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351BDFE253AAA1C00322BC0 /* DateCalculator.swift */; };
 		D351BE04253B4AB200322BC0 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351BE03253B4AB200322BC0 /* BlurView.swift */; };
@@ -33,11 +34,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D307949B2544C9CE00CF474A /* RecurringTaskPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecurringTaskPlan.swift; sourceTree = "<group>"; };
+		D307949B2544C9CE00CF474A /* RecurringTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecurringTask.swift; sourceTree = "<group>"; };
 		D307949E2544C9D800CF474A /* RecurringTaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecurringTaskManager.swift; sourceTree = "<group>"; };
 		D30794A12544CA6C00CF474A /* RecurringToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecurringToolbar.swift; sourceTree = "<group>"; };
 		D30794A62544D3E900CF474A /* IDBoolToggler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDBoolToggler.swift; sourceTree = "<group>"; };
 		D30794A92544D62B00CF474A /* IDBool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDBool.swift; sourceTree = "<group>"; };
+		D30794B6254534E300CF474A /* RecurringEditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecurringEditTaskView.swift; sourceTree = "<group>"; };
 		D351BDFB253AA7C400322BC0 /* FractalTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FractalTreeView.swift; sourceTree = "<group>"; };
 		D351BDFE253AAA1C00322BC0 /* DateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCalculator.swift; sourceTree = "<group>"; };
 		D351BE03253B4AB200322BC0 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
@@ -76,7 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				D307949E2544C9D800CF474A /* RecurringTaskManager.swift */,
-				D307949B2544C9CE00CF474A /* RecurringTaskPlan.swift */,
+				D307949B2544C9CE00CF474A /* RecurringTask.swift */,
 				D30794A92544D62B00CF474A /* IDBool.swift */,
 			);
 			path = Recurring;
@@ -87,6 +89,7 @@
 			children = (
 				D30794A12544CA6C00CF474A /* RecurringToolbar.swift */,
 				D30794A62544D3E900CF474A /* IDBoolToggler.swift */,
+				D30794B6254534E300CF474A /* RecurringEditTaskView.swift */,
 			);
 			path = RecurringViews;
 			sourceTree = "<group>";
@@ -110,13 +113,13 @@
 			path = AdHocViews;
 			sourceTree = "<group>";
 		};
-		D36E012D253A24100087E2E1 /* MainView */ = {
+		D36E012D253A24100087E2E1 /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
 				D39F9A132538AB0C006784C5 /* MainView.swift */,
 				D351BDFB253AA7C400322BC0 /* FractalTreeView.swift */,
 			);
-			path = MainView;
+			path = MainViews;
 			sourceTree = "<group>";
 		};
 		D39F9A052538AB0B006784C5 = {
@@ -143,7 +146,7 @@
 				D351BDFE253AAA1C00322BC0 /* DateCalculator.swift */,
 				D3A1D7502538AF16003FD359 /* Utilities.swift */,
 				D351BE02253B4A9800322BC0 /* UtilityViews */,
-				D36E012D253A24100087E2E1 /* MainView */,
+				D36E012D253A24100087E2E1 /* MainViews */,
 				D36E011C253A0A570087E2E1 /* AdHocViews */,
 				D3A1D75A2538B965003FD359 /* AdHoc */,
 				D30794962544C9A300CF474A /* RecurringViews */,
@@ -246,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D30794B7254534E300CF474A /* RecurringEditTaskView.swift in Sources */,
 				D36E011A25394B210087E2E1 /* AdHocStore.swift in Sources */,
 				D307949F2544C9D800CF474A /* RecurringTaskManager.swift in Sources */,
 				D351BE04253B4AB200322BC0 /* BlurView.swift in Sources */,
@@ -261,7 +265,7 @@
 				D351BE10253B81E800322BC0 /* AHTNote.swift in Sources */,
 				D39F9A262538AE12006784C5 /* AdHocTask.swift in Sources */,
 				D36E011E253A0A800087E2E1 /* AdHocManagerView.swift in Sources */,
-				D307949C2544C9CE00CF474A /* RecurringTaskPlan.swift in Sources */,
+				D307949C2544C9CE00CF474A /* RecurringTask.swift in Sources */,
 				D30794AA2544D62B00CF474A /* IDBool.swift in Sources */,
 				D351BDFF253AAA1C00322BC0 /* DateCalculator.swift in Sources */,
 				D30794A72544D3E900CF474A /* IDBoolToggler.swift in Sources */,

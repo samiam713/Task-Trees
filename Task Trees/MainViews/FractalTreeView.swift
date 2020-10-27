@@ -70,7 +70,7 @@ fileprivate struct FractalTree: Shape {
         return Path {(path: inout Path) in
             guard rect.origin == CGPoint(x: 0, y: 0) else {fatalError()}
             
-            let xMagnitude = rect.maxX*0.05
+            let xMagnitude = rect.maxX*0.07
             
             let startPoint = CGPoint(x: rect.midX - xMagnitude/2.0, y: rect.maxY - 5.0)
             
@@ -83,7 +83,7 @@ fileprivate struct FractalTree: Shape {
             
             path.closeSubpath()
             
-
+            
             
         }
     }
@@ -92,8 +92,8 @@ fileprivate struct FractalTree: Shape {
 struct FractalGrass: Shape {
     func path(in rect: CGRect) -> Path {
         let lines = [
-            CGPoint(x: rect.maxX, y: rect.maxY - 5.0),
-            CGPoint(x: rect.minX, y: rect.maxY - 5.0),
+            CGPoint(x: rect.maxX, y: rect.maxY - 6.0),
+            CGPoint(x: rect.minX, y: rect.maxY - 6.0),
             CGPoint(x: rect.minX, y: rect.maxY),
             CGPoint(x: rect.maxX, y: rect.maxY)
         ]
@@ -124,16 +124,27 @@ struct FractalTreeView: View {
                     .foregroundColor(.brown)
                 FractalGrass()
                     .foregroundColor(.init(red: 0.0, green: 100.0/255, blue: 0.0))
-//                FractalTree(subtrees: subtrees)
-//                    .stroke(lineWidth: 1.0)
-//                    .foregroundColor(.brown)
+                //                FractalTree(subtrees: subtrees)
+                //                    .stroke(lineWidth: 1.0)
+                //                    .foregroundColor(.brown)
             }
-            VStack {
-                Stepper("Change number of branches", value: $subtrees, in: 0...max)
-                Text("\((1 << (subtrees+1))-1) branch\(subtrees == 0 ? "" : "es")\(subtrees == 0 ? " (MIN)" : "")\(subtrees == max ? " (MAX)" : "")")
+            ZStack {
+                HStack {
+                    Text("Day \(dateCalculator.today)")
+                        .italic()
+                        .font(.subheadline)
+                    Spacer()
+                    Text(dateCalculator.todayPrettyString)
+                        .italic()
+                        .font(.subheadline)
+                }
+                VStack {
+                    Stepper("Change number of branches", value: $subtrees, in: 0...max)
+                    Text("\((1 << (subtrees+1))-1) branch\(subtrees == 0 ? "" : "es")\(subtrees == 0 ? " (MIN)" : "")\(subtrees == max ? " (MAX)" : "")")
+                }
+                
             }
-            .centered()
-            .padding(.bottom, 25)
+            .padding()
             .foregroundColor(.white)
             //            Stepper("Change Branches", onIncrement: {
             //                if subtrees < 10 {subtrees += 1}
