@@ -57,7 +57,7 @@ class RecurringTaskManager: ObservableObject, Codable {
             inactive = newInactive
         }
     }
-
+    
     func complete(recurringTask: RecurringTask) {
         todo.unsafeRemove(element: recurringTask)
         done.append(recurringTask)
@@ -67,7 +67,7 @@ class RecurringTaskManager: ObservableObject, Codable {
         done.unsafeRemove(element: recurringTask)
         todo.append(recurringTask)
     }
-
+    
     func delete(recurringTask: RecurringTask) {
         if todo.contains(recurringTask) {
             todo.unsafeRemove(element: recurringTask)
@@ -75,6 +75,27 @@ class RecurringTaskManager: ObservableObject, Codable {
             done.unsafeRemove(element: recurringTask)
         } else if inactive.contains(recurringTask) {
             inactive.unsafeRemove(element: recurringTask)
+        }
+    }
+    
+    func reclassify(recurringTask: RecurringTask) {
+        let shouldBeActive = recurringTask.appliesTo(day: dateCalculator.today)
+        
+        if shouldBeActive {
+            // if not active, switch it
+            if inactive.contains(recurringTask) {
+                inactive.unsafeRemove(element: recurringTask)
+                todo.append(recurringTask)
+            }
+        } else {
+            // if is active, switch it
+            if todo.contains(recurringTask) {
+                todo.unsafeRemove(element: recurringTask)
+                inactive.append(recurringTask)
+            } else if done.contains(recurringTask) {
+                done.unsafeRemove(element: recurringTask)
+                inactive.append(recurringTask)
+            }
         }
     }
     
@@ -99,7 +120,7 @@ class RecurringTaskManager: ObservableObject, Codable {
             }
         }
     }
-
+    
     func addNew() {
         let newRecurringTask = RecurringTask()
         inactive.append(newRecurringTask)

@@ -30,12 +30,16 @@ class RecurringTask: ObservableObject, Identifiable, Equatable, Codable {
     func increaseCycleSize() {
         guard canIncreaseCycleSize() else {fatalError()}
         days.append(.init(task: self, day: days.count))
+        // reclassify
+        recurringTaskManager.reclassify(recurringTask: self)
     }
     
     func canDecreaseCycleSize() -> Bool {days.count > 1}
     func decreaseCycleSize() {
         guard canDecreaseCycleSize() else {fatalError()}
         _ = days.popLast()
+        // reclassify
+        recurringTaskManager.reclassify(recurringTask: self)
     }
     
     func appliesTo(day: Int) -> Bool {
