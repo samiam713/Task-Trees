@@ -13,7 +13,7 @@ struct BlurView: NSViewRepresentable {
     private let isEmphasized: Bool
     
     init(
-        material: NSVisualEffectView.Material = .light,
+        material: NSVisualEffectView.Material = .underWindowBackground,
         blendingMode: NSVisualEffectView.BlendingMode = .behindWindow,
         emphasized: Bool = false) {
         self.material = material

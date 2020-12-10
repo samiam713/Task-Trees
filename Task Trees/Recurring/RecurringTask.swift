@@ -17,7 +17,7 @@ class RecurringTask: ObservableObject, Identifiable, Equatable, Codable {
     
     var name: String = "New Recurring Task"
     
-    @Published var days  = [IDBool]()
+    @Published var days = [IDBool]()
     let maxCycleSize = 7
     
     init() {
